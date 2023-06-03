@@ -94,25 +94,26 @@ To customize the image:
    TAG="0.0.0"
    PLATFORMS=linux/amd64,linux/arm64
    ```
-2. Add to the `root.bash` script to install any system wide software that is needed and to do any configuration that requires `root` privileges.  One effective strategy is to work in a Terminal in the container to work out the details of what to install and how to do the configuration.  Then transfer the necessary commands to this script.
-3. Add to the `student.bash` script to do any installations or configuration that should be done as the `student` user.
-4. Add to the `launch.bash` script to start any services or servers that need to be started when the container starts (e.g. Apache, etc...)
-5. Run `build.bash -d` 
-6. Create a new container from the image by adapting the following command based on your information from step #1.  Change `<container name>` to be a name you would like to give the container.
+2. Place any files that you would like to have access to inside the container during the build into the `./files` directory.  This directory is copied to `/files` inside the container during the build.  Its contents may be accessed during the build by statements in your `root.bash` and `student.bash` scripts (see below).  The `/files` directory is deleted at the end of the build and thus will not be available in the created image.  Any files that are needed in the image must be relocated by the scripts.
+3. Add to the `root.bash` script to install any system wide software that is needed and to do any configuration that requires `root` privileges.  One effective strategy is to work in a Terminal in the container to work out the details of what to install and how to do the configuration.  Then transfer the necessary commands to this script.
+4. Add to the `student.bash` script to do any installations or configuration that should be done as the `student` user.
+5. Add to the `launch.bash` script to start any services or servers that need to be started when the container starts (e.g. Apache, etc...)
+6. Run `build.bash -d` 
+7. Create a new container from the image by adapting the following command based on your information from step #1.  Change `<container name>` to be a name you would like to give the container.
    ```
    docker create --name <container name> --publish 5901:5901 --publish 6901:6901 <DOCKER_HUB_USER>/<IMAGE>:<TAG>
    ```
-7. Start the container using Docker Desktop or by adapting the following command.  Change `<container name>` to whatever name you used in the previous step.
+8. Start the container using Docker Desktop or by adapting the following command.  Change `<container name>` to whatever name you used in the previous step.
    ```
    docker start <container name>
    ```
-8. Connect to the container using VNC or a browser as described above in the Quick Start section.
-9. Delete the container and image between builds as necessary for testing and debugging by adapting the following commands.
+9. Connect to the container using VNC or a browser as described above in the Quick Start section.
+10. Delete the container and image between builds as necessary for testing and debugging by adapting the following commands.
    ```
    docker rm <container name>
    docker image rm <DOCKER_HUB_USER>/<IMAGE>:<TAG>
    ```
-
+   
 ## Building multi-architecture images and pushing dockerhub
 
 When you have debugged and tested an image and are ready to share it:
