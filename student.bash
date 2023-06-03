@@ -10,22 +10,10 @@
 mkdir bin
 cd bin
 
-# Get the Machine simulator and Assembler and setup some bash
-# aliases to make them easy to use.
+# Get the Machine simulator and Assembler
 git clone https://github.com/dickinson-comp256/AsmMachine.git
 
+# Setup some bash aliases to make the simulator and assembler eaiser to use.
 cd ~
-cat << EOF >> .bash_aliases
-
-machine ()
-{
-  java -jar -Dsun.java2d.xrender=false /home/student/bin/AsmMachine/Machine/bin/Machine.jar $@
-}
-
-assembler ()
-{
-  java -jar -Dsun.java2d.xrender=false /home/student/bin/AsmMachine/Assembler/bin/Assembler.jar $@
-}
-EOF
-
+cat /files/bash_alias_additions.bash >> .bash_aliases
 
