@@ -13,7 +13,8 @@ apt install --no-install-recommends -y \
   sqlite3 \
   libsqlite3-dev \
   nodejs \
-  npm
+  npm \
+  unzip
 
 # Get the Northwind sample database and ensure student user can write it.
 mkdir /db
@@ -32,3 +33,9 @@ tar -xzvf apache-tomcat-9.0.75.tar.gz -C /opt/tomcat --strip-components=1
 chown -R tomcat:tomcat /opt/tomcat/ 
 chmod -R u+x,g+rwx /opt/tomcat/ 
 usermod -a -G tomcat student
+
+# Install and configure a cursive font that is needed for the web abstractions unit.
+cd /usr/share/fonts
+wget https://www.cdnfonts.com/download/zapfino-cdnfonts.zip
+unzip zapfino-cdnfonts.zip
+rm zapfino-cdnfonts.zip

@@ -17,7 +17,6 @@ git clone https://github.com/dickinson-comp256/AsmMachine.git
 cd ~
 cat /files/bash_alias_additions.bash >> .bash_aliases
 
-
 # Get the starter code for the WebAbstractions unit.
 # Then install the express server and link the html directory
 # into the tomcat server.
