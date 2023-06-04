@@ -9,7 +9,7 @@
 
 apt update
 apt install --no-install-recommends -y \
-  default-jdk \
+  openjdk-17-jdk \
   sqlite3 \
   libsqlite3-dev \
   nodejs \
@@ -39,3 +39,8 @@ cd /usr/share/fonts
 wget https://www.cdnfonts.com/download/zapfino-cdnfonts.zip
 unzip zapfino-cdnfonts.zip
 rm zapfino-cdnfonts.zip
+
+# Install the JSONView extension into firefox.
+cd /usr/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}
+wget https://addons.mozilla.org/firefox/downloads/file/4115735/jsonview-2.4.2.xpi
+mv jsonview-2.4.2.xpi jsonview@brh.numbera.com.xpi

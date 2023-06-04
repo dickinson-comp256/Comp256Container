@@ -24,3 +24,7 @@ git clone https://github.com/dickinson-comp256/WebAbstractions.git
 cd WebAbstractions/api
 npm install
 ln -s /home/student/WebAbstractions/html /opt/tomcat/webapps/www 
+
+# Install some extensions for VSCodium
+codium --install-extension streetsidesoftware.code-spell-checker
+codium --install-extension vscjava.vscode-java-pack
