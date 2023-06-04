@@ -28,11 +28,7 @@ useradd -m -d /opt/tomcat -U -s /bin/false tomcat
 wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.75/bin/apache-tomcat-9.0.75.tar.gz
 tar -xzvf apache-tomcat-9.0.75.tar.gz -C /opt/tomcat --strip-components=1
 
-# Note: There are security issues with the following so it is
-# not intended for production use.
-#chown -R tomcat:tomcat /opt/tomcat/ 
-#chmod -R u+x,g+rwx /opt/tomcat/ 
-#usermod -a -G tomcat student
-#ln -s /opt/tomcat/api /home/student/api 
-#ln -s /opt/tomcat/webapps/www /home/student/www
-
+# Allow the student user see/write the stuff in /opt/tomcat.
+chown -R tomcat:tomcat /opt/tomcat/ 
+chmod -R u+x,g+rwx /opt/tomcat/ 
+usermod -a -G tomcat student

@@ -17,3 +17,11 @@ git clone https://github.com/dickinson-comp256/AsmMachine.git
 cd ~
 cat /files/bash_alias_additions.bash >> .bash_aliases
 
+
+# Get the starter code for the WebAbstractions unit.
+# Then install the express server and link the html directory
+# into the tomcat server.
+git clone https://github.com/dickinson-comp256/WebAbstractions.git
+cd WebAbstractions/api
+npm install
+ln -s /home/student/WebAbstractions/html /opt/tomcat/webapps/www 
