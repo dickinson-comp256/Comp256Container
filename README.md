@@ -1,14 +1,8 @@
-# CourseContainerTemplate
+# Comp256Container
 
-This Template Repository provides tools for quickly creating Debian based course/application specific Docker containers that can be used as a virtual machine.  
+This repository provides tools for quickly creating a Debian based Docker container that provides a virutal machine for COMP256.
 
-Images such as these are ideal for providing fully configured development or course environments.  For example:
-* An environment for teaching the linux/Unix command line.
-* Providing a fully configured web server, database and API framework for a full stack web development course.
-* Providing particular compilers, assemblers, etc... for a course that requires specialized tools.
-* Etc.
-
-The Docker container created by this Template runs Debian Linux with an XFCE4 desktop environment and appears as shown here when in use.
+The Docker container created by this Template runs Debian Linux with an XFCE4 desktop environment that is accessed via VNC (or noVNC) and appears as shown here when in use.
 
 ![Debian XFCE4 desktop running in a VNC client](desktop.jpg)
 
