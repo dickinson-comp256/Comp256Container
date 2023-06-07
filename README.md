@@ -36,6 +36,7 @@ The following instructions will pull and create the container, start it, and con
    ```
    docker start Comp256
    ```
+   Note: This should be done each time you want to start the container to work.
 3. Connect to the container:
    * Using a VNC Client (recommended):
   
@@ -63,7 +64,8 @@ The following instructions will pull and create the container, start it, and con
    ```
    docker stop Comp256
    ```
-
+   Note: This should be done each time you are done working and want to stop the container.
+   
 ## Container credentials
 
 When connecting to the container the default user is automatically logged in.  No credentials will need to be provided to connect to the client. However, the default account does have `sudo` privileges within the container and the password will be required to run commands with `sudo`.
