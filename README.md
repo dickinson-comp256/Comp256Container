@@ -25,22 +25,18 @@ The requirements for creating, testing, and using the image produced by this Tem
 
 ## Quick start
 
-The following instructions will have you build the default image, create a container and connect to it.  It provides the fastest way to get a working container up and running to try it out and see if it will be suitable for your use. Later instructions will describe how to customize the container to your specific purposes.
+The following instructions will pull and create the container, start it, and connect to it:
 
-1. Create a new repository using this template.
-2. Build the image using the command:
+1. To pull the image and create a new container, open a Terminal (WSL in Windows) and use the command:
    ```
-   ./build.bash -d
+   docker create --name Comp256 --publish 5901:5901 --publish 6901:6901 braughtg/comp256-container:1.1.0
    ```
-3. Create a new container from the image using the command:
+   Note: This should only be done once.
+2. Start the container using Docker Desktop or using the following command in a Terminal (WSL in Windows):
    ```
-   docker create --name CourseContainer --publish 5901:5901 --publish 6901:6901 somebody/course-container:0.0.0
+   docker start Comp256
    ```
-4. Start the container using Docker Desktop or using the command:
-   ```
-   docker start CourseContainer
-   ```
-5. Connect to the container:
+3. Connect to the container:
    * Using a VNC Client (recommended):
   
      Start your VNC Client and connect to:
@@ -63,70 +59,18 @@ The following instructions will have you build the default image, create a conta
      * The noVNC menu (the little tab on the left side of the desktop) provides some helpful functionality.
      * To copy/paste between the host machine and the container you must use the clipboard accessed via the noVNC menu. This is a little inconvenient, but it is functional.
      * To enable the XFCE4 desktop to scale with the browser window, use the settings (the the gear) on the noVNC menu to set the “Scaling Mode” to “Remote Resizing.”
-6. Stop the container using Docker Desktop or using the command:
+4. To stop the container use Docker Desktop or the following command in a Terminal (WSL in Windows):
    ```
-   docker stop CourseContainer
-   ```
-7. If desired, you can delete the default Course Container and image using Docker Desktop or by using the following commands.
-   ```
-   docker rm CourseContainer
-   docker image rm somebody/course-container:0.0.0
+   docker stop Comp256
    ```
 
 ## Container credentials
 
-When connecting to the container the default user is automatically logged in.  No credentials will need to be provided to connect to the client. 
+When connecting to the container the default user is automatically logged in.  No credentials will need to be provided to connect to the client. However, the default account does have `sudo` privileges within the container and the password will be required to run commands with `sudo`.
 
 The default user has the following credentials:
 * Username: `student`
 * Password: `student`
-
-Note that the `student` user has `sudo` privileges within the container and the password will be required to run commands with `sudo`.
-
-## Customizing the image
-
-To customize the image:
-
-1. Edit the following lines in the `config.bash` script to reflect your information:
-   ```
-   DOCKER_HUB_USER="somebody"
-   IMAGE="CourseContainer"
-   TAG="0.0.0"
-   PLATFORMS=linux/amd64,linux/arm64
-   ```
-2. Place any files that you would like to have access to inside the container during the build into the `./files` directory.  The contents of this directory (but not its structure - i.e. subdirectories are not preserved) are copied to `/files` inside the container during the build.  The contents of `/files` may then be accessed during the build by statements in your `root.bash` and `student.bash` scripts (see below).  The `/files` directory is deleted at the end of the build and thus will not be available in the created image.  Any files that are needed in the image must be relocated by the scripts.
-3. Add to the `root.bash` script to install any system wide software that is needed and to do any configuration that requires `root` privileges.  One effective strategy is to work in a Terminal in the container to work out the details of what to install and how to do the configuration.  Then transfer the necessary commands to this script.
-4. Add to the `student.bash` script to do any installations or configuration that should be done as the `student` user.
-5. Add to the `launch.bash` script to start any services or servers that need to be started when the container starts (e.g. Apache, etc...)
-6. Run `build.bash -d` 
-7. Create a new container from the image by adapting the following command based on your information from step #1.  Change `<container name>` to be a name you would like to give the container.
-   ```
-   docker create --name <container name> --publish 5901:5901 --publish 6901:6901 <DOCKER_HUB_USER>/<IMAGE>:<TAG>
-   ```
-8. Start the container using Docker Desktop or by adapting the following command.  Change `<container name>` to whatever name you used in the previous step.
-   ```
-   docker start <container name>
-   ```
-9. Connect to the container using VNC or a browser as described above in the Quick Start section.
-10. Delete the container and image between builds as necessary for testing and debugging by adapting the following commands.
-   ```
-   docker rm <container name>
-   docker image rm <DOCKER_HUB_USER>/<IMAGE>:<TAG>
-   ```
-   
-## Building multi-architecture images and pushing dockerhub
-
-When you have debugged and tested an image and are ready to share it:
-
-1. Log into dockerhub as the user you specified in `config.bash`:
-   ```
-   docker login
-   ```
-2. Run the command:
-   ```
-   ./build.bash
-   ```
-   Notice: There is no `-d` here.  This will cause images to be built for all of the `PLATFORMS` listed in `config.baah`.  The resulting images will then be pushed to dockerhub.
 
 ## A note on persistence of container data
 
@@ -148,4 +92,4 @@ To preserve the `student` home directory on the host machine file system adapt t
 
 ## More details
 
-For all of the details about what is behind this Template Repository see the [VncNoVNCContainerBase](https://github.com/braughtg/VncNoVncContainerBase) repo. It describes the creation of the base image for the images created using this template.  This will be useful if you find that you need to modify the base image in ways that are not easily accomplished via the `config.bash`, `root.bash`, `student.bash` and `launch.bash` scripts.
+For all of the details about what is behind this Template Repository see the [CourseContainerTemplate](https://github.com/braughtg/CourseContainerTemplate) and the [VncNoVNCContainerBase](https://github.com/braughtg/VncNoVncContainerBase) repos.
