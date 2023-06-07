@@ -1,6 +1,6 @@
 # Comp256Container
 
-This repository provides tools for quickly creating a Debian based Docker container that provides a virutal machine for COMP256.
+This repository provides tools for quickly creating a Debian based Docker container that provides a virtual machine for COMP256.
 
 The Docker container created by this Template runs Debian Linux with an XFCE4 desktop environment that is accessed via VNC (or noVNC) and appears as shown here when in use.
 
